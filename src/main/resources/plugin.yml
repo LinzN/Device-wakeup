@@ -1,0 +1,4 @@
+main: de.linzn.wakeupDevices.WakeupDevicesPlugin
+name: wakeup-devices
+version: ${project.version}
+depend: [ restful-api ]
