@@ -12,6 +12,8 @@
 package de.linzn.wakeupDevices;
 
 
+import de.linzn.restfulapi.RestFulApiPlugin;
+import de.linzn.wakeupDevices.push.POST_WakeupDevice;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
@@ -28,6 +30,7 @@ public class WakeupDevicesPlugin extends STEMPlugin {
     public void onEnable() {
         setUpConfig();
         STEMSystemApp.getInstance().getCommandModule().registerCommand("wakeup", new WakeCommand());
+        RestFulApiPlugin.restFulApiPlugin.registerIPostJSONClass(new POST_WakeupDevice());
     }
 
     @Override
