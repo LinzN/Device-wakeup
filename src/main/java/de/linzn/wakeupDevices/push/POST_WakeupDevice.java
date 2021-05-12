@@ -16,7 +16,6 @@ import de.linzn.restfulapi.api.jsonapi.RequestData;
 import de.linzn.wakeupDevices.DeviceFinder;
 import de.linzn.wakeupDevices.WakeDevice;
 import de.stem.stemSystem.STEMSystemApp;
-import de.stem.stemSystem.utils.Color;
 import org.json.JSONObject;
 
 public class POST_WakeupDevice implements IRequest {
@@ -27,7 +26,7 @@ public class POST_WakeupDevice implements IRequest {
         JSONObject jsonObject = new JSONObject();
 
         String deviceName = requestData.getSubChannels().get(0);
-        STEMSystemApp.LOGGER.INFO(Color.GREEN + "[Restful API] Post Request: Wake device::" + deviceName);
+        STEMSystemApp.LOGGER.INFO("[Restful API] Post Request: Wake device::" + deviceName);
 
         WakeDevice device = DeviceFinder.getDevice(deviceName);
         if (device != null) {
