@@ -88,7 +88,7 @@
         <dependency>
             <groupId>de.stem.plugins</groupId>
             <artifactId>restful-api</artifactId>
-            <version>0.0.1</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <properties>
