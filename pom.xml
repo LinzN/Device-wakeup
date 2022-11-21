@@ -13,7 +13,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.stem.plugins</groupId>
-    <name>wakeup-devices</name>
+    <name>computer-management</name>
     <repositories>
         <repository>
             <id>Stem Builds Repository</id>
@@ -78,7 +78,7 @@
         </plugins>
     </build>
     <version>1.0-SNAPSHOT</version>
-    <artifactId>wakeup-devices</artifactId>
+    <artifactId>computer-management</artifactId>
     <dependencies>
         <dependency>
             <groupId>de.stem</groupId>

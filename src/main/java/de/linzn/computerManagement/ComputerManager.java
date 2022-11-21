@@ -1,4 +1,4 @@
-package de.linzn.wakeupDevices;
+package de.linzn.computerManagement;
 
 import de.linzn.simplyConfiguration.FileConfiguration;
 import de.linzn.simplyConfiguration.provider.YamlConfiguration;
@@ -19,7 +19,7 @@ public class ComputerManager {
     }
 
     private void loadComputers() {
-        File folder = new File(WakeupDevicesPlugin.wakeupDevicesPlugin.getDataFolder(), "devices");
+        File folder = new File(ComputerManagementPlugin.computerManagementPlugin.getDataFolder(), "devices");
 
         if (folder.exists()) {
             for (final File file : folder.listFiles()) {

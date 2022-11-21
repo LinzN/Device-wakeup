@@ -1,4 +1,4 @@
-package de.linzn.wakeupDevices.actions;
+package de.linzn.computerManagement.actions;
 
 public interface DeviceActions {
     void runAction();

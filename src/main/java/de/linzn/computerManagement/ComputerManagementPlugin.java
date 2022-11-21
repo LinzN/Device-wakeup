@@ -9,7 +9,7 @@
  *
  */
 
-package de.linzn.wakeupDevices;
+package de.linzn.computerManagement;
 
 
 import de.linzn.simplyConfiguration.FileConfiguration;
@@ -19,15 +19,15 @@ import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
 import java.io.File;
 
-public class WakeupDevicesPlugin extends STEMPlugin {
+public class ComputerManagementPlugin extends STEMPlugin {
 
 
-    public static WakeupDevicesPlugin wakeupDevicesPlugin;
+    public static ComputerManagementPlugin computerManagementPlugin;
     private ComputerManager computerManager;
 
 
-    public WakeupDevicesPlugin() {
-        wakeupDevicesPlugin = this;
+    public ComputerManagementPlugin() {
+        computerManagementPlugin = this;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class WakeupDevicesPlugin extends STEMPlugin {
     }
 
     private void setUpConfig() {
-        File folder = new File(WakeupDevicesPlugin.wakeupDevicesPlugin.getDataFolder(), "devices");
+        File folder = new File(ComputerManagementPlugin.computerManagementPlugin.getDataFolder(), "devices");
         if(!folder.exists()){
             folder.mkdir();
             File exampleFile = new File(folder, "example.yml");

@@ -1,8 +1,8 @@
-package de.linzn.wakeupDevices.actions;
+package de.linzn.computerManagement.actions;
 
 
-import de.linzn.wakeupDevices.Computer;
-import de.linzn.wakeupDevices.WakeupDevicesPlugin;
+import de.linzn.computerManagement.Computer;
+import de.linzn.computerManagement.ComputerManagementPlugin;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.taskManagment.operations.defaultOperations.ShellOperation;
 
@@ -19,6 +19,6 @@ public class WakeupDevice implements DeviceActions {
         shellOperation.setUseOutput(false);
         shellOperation.setUseSSH(false);
         shellOperation.setScriptCommand("etherwake " + computer.getMacAddress().toLowerCase());
-        STEMSystemApp.getInstance().getScheduler().runTask(WakeupDevicesPlugin.wakeupDevicesPlugin, shellOperation);
+        STEMSystemApp.getInstance().getScheduler().runTask(ComputerManagementPlugin.computerManagementPlugin, shellOperation);
     }
 }

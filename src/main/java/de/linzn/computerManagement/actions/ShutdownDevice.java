@@ -1,9 +1,9 @@
-package de.linzn.wakeupDevices.actions;
+package de.linzn.computerManagement.actions;
 
 
-import de.linzn.wakeupDevices.Computer;
-import de.linzn.wakeupDevices.OSType;
-import de.linzn.wakeupDevices.WakeupDevicesPlugin;
+import de.linzn.computerManagement.Computer;
+import de.linzn.computerManagement.OSType;
+import de.linzn.computerManagement.ComputerManagementPlugin;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.taskManagment.operations.defaultOperations.ShellOperation;
 
@@ -28,6 +28,6 @@ public class ShutdownDevice implements DeviceActions {
         } else if(computer.getOsType() == OSType.LINUX){
             shellOperation.setScriptCommand("shutdown -h now");
         }
-        STEMSystemApp.getInstance().getScheduler().runTask(WakeupDevicesPlugin.wakeupDevicesPlugin, shellOperation);
+        STEMSystemApp.getInstance().getScheduler().runTask(ComputerManagementPlugin.computerManagementPlugin, shellOperation);
     }
 }

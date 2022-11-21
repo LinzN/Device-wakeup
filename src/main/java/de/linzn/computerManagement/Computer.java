@@ -1,4 +1,4 @@
-package de.linzn.wakeupDevices;
+package de.linzn.computerManagement;
 
 import de.stem.stemSystem.STEMSystemApp;
 
@@ -24,7 +24,7 @@ public class Computer {
         this.staticSSHPort = staticSSHPort;
         this.staticSSHUsername = staticSSHUsername;
         this.deviceStatus = DeviceStatus.UNKNOWN;
-        STEMSystemApp.getInstance().getScheduler().runRepeatScheduler(WakeupDevicesPlugin.wakeupDevicesPlugin, this::request_device_status, 1, 2, TimeUnit.SECONDS);
+        STEMSystemApp.getInstance().getScheduler().runRepeatScheduler(ComputerManagementPlugin.computerManagementPlugin, this::request_device_status, 1, 2, TimeUnit.SECONDS);
     }
 
     private void request_device_status(){
