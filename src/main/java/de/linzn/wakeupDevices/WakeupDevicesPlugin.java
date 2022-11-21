@@ -12,14 +12,18 @@
 package de.linzn.wakeupDevices;
 
 
-import de.linzn.restfulapi.RestFulApiPlugin;
-import de.linzn.wakeupDevices.push.POST_WakeupDevice;
+import de.linzn.simplyConfiguration.FileConfiguration;
+import de.linzn.simplyConfiguration.provider.YamlConfiguration;
 import de.stem.stemSystem.STEMSystemApp;
 import de.stem.stemSystem.modules.pluginModule.STEMPlugin;
 
+import java.io.File;
+
 public class WakeupDevicesPlugin extends STEMPlugin {
 
+
     public static WakeupDevicesPlugin wakeupDevicesPlugin;
+    private ComputerManager computerManager;
 
 
     public WakeupDevicesPlugin() {
@@ -29,8 +33,8 @@ public class WakeupDevicesPlugin extends STEMPlugin {
     @Override
     public void onEnable() {
         setUpConfig();
-        STEMSystemApp.getInstance().getCommandModule().registerCommand("wakeup", new WakeCommand());
-        RestFulApiPlugin.restFulApiPlugin.registerIPostJSONClass(new POST_WakeupDevice());
+        this.computerManager = new ComputerManager(this);
+        STEMSystemApp.getInstance().getCommandModule().registerCommand("computer", new ComputerCommand());
     }
 
     @Override
@@ -39,11 +43,23 @@ public class WakeupDevicesPlugin extends STEMPlugin {
     }
 
     private void setUpConfig() {
-        if (!this.getDefaultConfig().contains("devices")) {
-            this.getDefaultConfig().getString("devices.testdevice1.mac", "00:00:00:00:00:01");
-            this.getDefaultConfig().getString("devices.testdevice2.mac", "00:00:00:00:00:02");
+        File folder = new File(WakeupDevicesPlugin.wakeupDevicesPlugin.getDataFolder(), "devices");
+        if(!folder.exists()){
+            folder.mkdir();
+            File exampleFile = new File(folder, "example.yml");
+            FileConfiguration exampleConfigFile = YamlConfiguration.loadConfiguration(exampleFile);
+            exampleConfigFile.set("device.name", "test");
+            exampleConfigFile.set("device.osType", OSType.WINDOWS.name());
+            exampleConfigFile.set("device.macAddress", "FF:FF:FF:FF:FF:FF");
+            exampleConfigFile.set("device.staticIP", "10.0.0.1");
+            exampleConfigFile.set("device.staticSSHPort", 22);
+            exampleConfigFile.set("device.staticSSHUser", "testUser");
+            exampleConfigFile.save();
         }
         this.getDefaultConfig().save();
     }
 
+    public ComputerManager getComputerManager() {
+        return computerManager;
+    }
 }
