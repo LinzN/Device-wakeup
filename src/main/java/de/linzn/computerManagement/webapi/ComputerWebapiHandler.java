@@ -14,7 +14,7 @@ public class ComputerWebapiHandler {
     }
 
     private void registerHandler(){
-        WebModule computerWebApiModule = new WebModule("computerManagement");
+        WebModule computerWebApiModule = new WebModule("computermanagement");
         computerWebApiModule.registerSubCallHandler(new WakeupComputer(), "wakeup");
         computerWebApiModule.registerSubCallHandler(new ShutdownComputer(), "shutdown");
         computerWebApiModule.registerSubCallHandler(new StatusComputer(), "status");
