@@ -45,6 +45,7 @@ public class ComputerManagementPlugin extends STEMPlugin {
     }
 
     private void setUpConfig() {
+        this.getDefaultConfig().save();
         File folder = new File(ComputerManagementPlugin.computerManagementPlugin.getDataFolder(), "devices");
         if(!folder.exists()){
             folder.mkdir();
@@ -58,7 +59,6 @@ public class ComputerManagementPlugin extends STEMPlugin {
             exampleConfigFile.set("device.staticSSHUser", "testUser");
             exampleConfigFile.save();
         }
-        this.getDefaultConfig().save();
     }
 
     public ComputerManager getComputerManager() {
