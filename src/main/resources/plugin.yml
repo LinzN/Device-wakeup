@@ -1,4 +1,4 @@
 main: de.linzn.computerManagement.ComputerManagementPlugin
 name: computer-management
 version: ${project.version}
-depend: [ restful-api ]
+depend: [ web-api ]

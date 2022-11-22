@@ -12,6 +12,7 @@
 package de.linzn.computerManagement;
 
 
+import de.linzn.computerManagement.webapi.ComputerWebapiHandler;
 import de.linzn.simplyConfiguration.FileConfiguration;
 import de.linzn.simplyConfiguration.provider.YamlConfiguration;
 import de.stem.stemSystem.STEMSystemApp;
@@ -24,7 +25,7 @@ public class ComputerManagementPlugin extends STEMPlugin {
 
     public static ComputerManagementPlugin computerManagementPlugin;
     private ComputerManager computerManager;
-
+    private ComputerWebapiHandler computerWebapiHandler;
 
     public ComputerManagementPlugin() {
         computerManagementPlugin = this;
@@ -34,6 +35,7 @@ public class ComputerManagementPlugin extends STEMPlugin {
     public void onEnable() {
         setUpConfig();
         this.computerManager = new ComputerManager(this);
+        this.computerWebapiHandler = new ComputerWebapiHandler(this);
         STEMSystemApp.getInstance().getCommandModule().registerCommand("computer", new ComputerCommand());
     }
 
@@ -61,5 +63,9 @@ public class ComputerManagementPlugin extends STEMPlugin {
 
     public ComputerManager getComputerManager() {
         return computerManager;
+    }
+
+    public ComputerWebapiHandler getComputerWebapiHandler() {
+        return computerWebapiHandler;
     }
 }
