@@ -2,3 +2,5 @@ main: de.linzn.computerManagement.ComputerManagementPlugin
 name: computer-management
 version: ${project.version}
 depend: [ web-api ]
+buildJobName: ${buildServer.jobName}
+buildNumber: ${buildServer.buildNumber}
