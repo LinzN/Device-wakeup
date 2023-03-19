@@ -5,8 +5,10 @@ import de.linzn.computerManagement.Computer;
 import de.linzn.computerManagement.ComputerManagementPlugin;
 import de.linzn.computerManagement.actions.ShutdownDevice;
 import de.linzn.computerManagement.actions.WakeupDevice;
+import de.linzn.webapi.core.ApiResponse;
 import de.linzn.webapi.core.HttpRequestClientPayload;
 import de.linzn.webapi.modules.RequestInterface;
+import org.checkerframework.checker.units.qual.A;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -14,7 +16,7 @@ import java.io.IOException;
 public class WakeupComputer extends RequestInterface {
     @Override
     public Object callHttpEvent(HttpExchange httpExchange, HttpRequestClientPayload httpRequestClientPayload) throws IOException {
-        JSONObject jsonObject = new JSONObject();
+        ApiResponse apiResponse = new ApiResponse();
         JSONObject postData = (JSONObject) httpRequestClientPayload.getPostData();
 
         String computerName = postData.get("computerName").toString();
@@ -25,11 +27,10 @@ public class WakeupComputer extends RequestInterface {
         if (computer != null) {
             if (requestAction.equalsIgnoreCase("WRITE")) {
                 new WakeupDevice(computer).runAction();
-                jsonObject.put("status", "OK");
             }
         } else {
-            jsonObject.put("error", 404);
+            apiResponse.setError("Computer with this name not found!");
         }
-        return jsonObject;
+        return apiResponse.buildResponse();
     }
 }

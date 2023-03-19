@@ -3,6 +3,7 @@ package de.linzn.computerManagement.webapi;
 import com.sun.net.httpserver.HttpExchange;
 import de.linzn.computerManagement.Computer;
 import de.linzn.computerManagement.ComputerManagementPlugin;
+import de.linzn.webapi.core.ApiResponse;
 import de.linzn.webapi.core.HttpRequestClientPayload;
 import de.linzn.webapi.modules.RequestInterface;
 import org.json.JSONObject;
@@ -12,7 +13,7 @@ import java.io.IOException;
 public class StatusComputer extends RequestInterface {
     @Override
     public Object callHttpEvent(HttpExchange httpExchange, HttpRequestClientPayload httpRequestClientPayload) throws IOException {
-        JSONObject jsonObject = new JSONObject();
+        ApiResponse apiResponse = new ApiResponse();
         JSONObject postData = (JSONObject) httpRequestClientPayload.getPostData();
 
         String computerName = postData.get("computerName").toString();
@@ -22,11 +23,11 @@ public class StatusComputer extends RequestInterface {
 
         if (computer != null) {
             if (requestAction.equalsIgnoreCase("READ")) {
-                jsonObject.put("status", computer.getDeviceStatus().name());
+                apiResponse.getJSONObject().put("state", computer.getDeviceStatus().name());
             }
         } else {
-            jsonObject.put("error", 404);
+            apiResponse.setError("Computer with this name not found!");
         }
-        return jsonObject;
+        return apiResponse.buildResponse();
     }
 }
